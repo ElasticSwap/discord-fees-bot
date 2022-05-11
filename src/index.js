@@ -219,7 +219,9 @@ client.on('ready', async () => {
     info(`Total Fees: ${usdFees.toFixed(6)}`);
     info('---');
 
-    client.user.setActivity(`$${usdFees.toFixed(2)}`, { type: 'PLAYING' });
+    if (!process.env.TESTING) {
+      client.user.setActivity(`$${usdFees.toFixed(2)}`, { type: 'PLAYING' });
+    }
   };
 
   // do it immediately on start
