@@ -1,0 +1,42 @@
+{
+  "name": "discord-fees-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "ElasticSwap",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@elasticswap/elasticswap": "0.0.13",
+    "@elasticswap/sdk": "0.0.27",
+    "@elasticswap/token": "^0.0.6",
+    "@logdna/logger": "^2.6.4",
+    "discord.js": "13.6.0",
+    "dotenv": "^16.0.1",
+    "ethers": "^5.6.5",
+    "node-fetch": "^3.2.4",
+    "redis": "^4.1.0"
+  },
+  "devDependencies": {
+    "eslint": "8.12.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "pre-push": "0.1.1",
+    "prettier": "2.2.1"
+  },
+  "scripts": {
+    "start": "node --experimental-specifier-resolution=node src/index.js",
+    "lint": "yarn run prettier && yarn run lint:js",
+    "lint:js": "npx eslint src/*.js src/**/*.js --fix",
+    "prettier": "yarn run prettier:js",
+    "prettier:js": "npx prettier --write src/*.js --write src/**/*.js --write src/**/**/*.js --write src/**/**/**/*.js"
+  },
+  "pre-push": {
+    "run": "lint",
+    "silent": false
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.0.0"
+  }
+}
