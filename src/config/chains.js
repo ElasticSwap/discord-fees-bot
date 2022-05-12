@@ -3,7 +3,7 @@ export default [
     id: '0xa86a',
     token: 'AVAX',
     label: 'Avalanche',
-    rpcUrl: 'https://api.avax.network/ext/bc/C/rpc',
+    rpcUrl: 'https://nd-077-645-208.p2pify.com/b3c88fccb70a974b4dd530764489a445/ext/bc/C/rpc',
     blockExplorerUrl: 'https://snowtrace.io',
   },
   {
