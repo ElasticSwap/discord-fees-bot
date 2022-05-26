@@ -16,7 +16,7 @@ import chains from './config/chains';
 import env from './config/env';
 import RedisAdapter from './adapters/RedisAdapter';
 
-const logger = logdna.createLogger(process.env.LOG_DNA_KEY, {app: 'Discord Fees Bot'})
+const logger = logdna.createLogger(process.env.LOG_DNA_KEY, { app: 'Discord Fees Bot' });
 
 const debug = (message) => {
   console.log(message);
@@ -25,7 +25,7 @@ const debug = (message) => {
 
 const error = (message, e) => {
   console.log(message, 'ERROR:', e.message);
-  logger.debug(message, {meta: e});
+  logger.debug(message, { meta: e });
 };
 
 const info = (message) => {
@@ -68,7 +68,7 @@ const findtokenAddress = (lists, sym) => {
   const token = list.tokens.find(({ symbol }) => symbol === sym);
   debug(`Found token address: ${sym} = ${token.address}`);
   return token.address;
-}
+};
 
 const cachedCoingeckoPrices = {};
 
@@ -202,12 +202,7 @@ client.on('ready', async () => {
     info(`Ethereum AMPL/USDC Fees: ${eAMPLUSDCFees.toFixed(6)}`);
 
     // Ethereum FOXy/FOX
-    const eFOXYFOXFees = await calcBaseQuoteFees(
-      eFOXYFOX,
-      foxyPrice,
-      foxPrice,
-      ethereumFeeAddress,
-    );
+    const eFOXYFOXFees = await calcBaseQuoteFees(eFOXYFOX, foxyPrice, foxPrice, ethereumFeeAddress);
     usdFees = usdFees.plus(eFOXYFOXFees);
     info(`Ethereum FOXy/FOX Fees: ${eFOXYFOXFees.toFixed(6)}`);
 

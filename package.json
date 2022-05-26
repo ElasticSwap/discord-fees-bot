@@ -8,7 +8,7 @@
   "type": "module",
   "dependencies": {
     "@elasticswap/elasticswap": "0.0.13",
-    "@elasticswap/sdk": "0.0.27",
+    "@elasticswap/sdk": "0.0.29",
     "@elasticswap/token": "^0.0.6",
     "@logdna/logger": "^2.6.4",
     "discord.js": "13.6.0",
