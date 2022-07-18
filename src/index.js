@@ -106,6 +106,10 @@ const calcBaseQuoteFees = async (exchange, basePrice, quotePrice, feeAddress) =>
 const calcBaseUSDCFees = (exchange, basePrice, feeAddress) =>
   calcBaseQuoteFees(exchange, basePrice, toBigNumber(1), feeAddress);
 
+// get the usdc balances of the two fee addresses and then add to the sum of "Fees generated"  
+// uSDC for ETH USDC.e for avalanche
+
+
 client.on('ready', async () => {
   info(`${client.user.username} is ready!`);
 
@@ -210,6 +214,16 @@ client.on('ready', async () => {
     const eTICUSDCFees = await calcBaseUSDCFees(eTICUSDC, ticPrice, ethereumFeeAddress);
     usdFees = usdFees.plus(eTICUSDCFees);
     info(`Ethereum TIC/USDC Fees: ${eTICUSDCFees.toFixed(6)}`);
+
+    // Ethereum USDC balance
+    const eUSDCBalance =  await ethereum.erc20(addresses.ethereum.USDC).balanceOf(ethereumFeeAddress);
+    usdFees = usdFees.plus(eUSDCBalance);
+    info(`Ethereum Fee Multisig USDC Balance: ${eUSDCBalance}`);
+   
+    // Avax USDC.e balance
+    const aUSDCBalance =  await avalanche.erc20(addresses.avalanche.USDCe).balanceOf(avalancheFeeAddress);
+    usdFees = usdFees.plus(aUSDCBalance);
+    info(`Avalance Fee Multisig USDC Balance: ${aUSDCBalance}`);
     info('---');
     info(`Total Fees: ${usdFees.toFixed(6)}`);
     info('---');
